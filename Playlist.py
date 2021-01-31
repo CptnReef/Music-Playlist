@@ -24,13 +24,13 @@ class Playlist:
   def find_song(self, title):
     print("=" * 90)
 
-    find_song = 0
+    current_song = 0
     select_song = self.__first_song
 
     while select_song != None:
-      if select_song == title:
-        return find_song
-      find_song += 1
+      if select_song.set_next_song(title) == title:
+        return current_song
+      current_song += 1
       select_song = select_song.get_next_song()
 
     print("=" * 90)
@@ -51,7 +51,7 @@ class Playlist:
       if select_song.get_next_song() == None:
         break
       elif select_song.get_next_song().get_next_song() == title:
-        select_song.set_next_song(select_song.get_next_song().get_next_song())
+        select_song.set_next_song.remove(select_song.get_next_song().get_next_song())
         break
       else:
         select_song = select_song.get_next_song()
@@ -73,7 +73,6 @@ class Playlist:
 
     return count_songs
 
-    
 
   # TODO: Create a method called print_songs that prints a numbered list of the songs in the playlist.
 
@@ -85,7 +84,7 @@ class Playlist:
   def print_songs(self):
     print("=" * 90)
         
-    lst = 1
+    lst = 0
     song_file = self.__first_song
     while song_file != None:
       lst += 1
@@ -93,9 +92,3 @@ class Playlist:
       song_file = song_file.get_next_song()
 
     print("=" * 90)
-
-p = Playlist()
-
-p.add_song("dashing through the snow")
-# p.add_song("hulk smashing")
-# p.length()
