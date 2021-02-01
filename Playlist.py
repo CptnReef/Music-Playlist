@@ -24,14 +24,14 @@ class Playlist:
   def find_song(self, title):
     print("=" * 90)
 
-    current_song = 0
     select_song = self.__first_song
+    song_no = 0
 
     while select_song != None:
-      if select_song.set_next_song(title) == title:
-        return current_song
-      current_song += 1
+      if select_song.get_title() == title:
+        return song_no
       select_song = select_song.get_next_song()
+      song_no += 1
 
     print("=" * 90)
 
@@ -48,10 +48,14 @@ class Playlist:
       return
     
     while select_song != None:
+      print(select_song)
+      print(select_song.get_next_song())
+
       if select_song.get_next_song() == None:
         break
-      elif select_song.get_next_song().get_next_song() == title:
-        select_song.set_next_song.remove(select_song.get_next_song().get_next_song())
+      elif select_song.get_next_song().get_title() == title:
+        select_song.set_next_song(select_song.get_next_song().get_next_song())
+        # print(select_song.get_title())
         break
       else:
         select_song = select_song.get_next_song()
@@ -92,3 +96,4 @@ class Playlist:
       song_file = song_file.get_next_song()
 
     print("=" * 90)
+
